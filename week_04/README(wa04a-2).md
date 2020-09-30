@@ -1,7 +1,7 @@
 const {Client} = require('pg'),
-      dotenv = require('dotenv');
+      dotenv = require('dotenv'),
+      async = require('async');
 
-// AWS RDS POSTGRESQL INSTANCE
 dotenv.config(); 
 let db_credentials = {
     host: 'data-structures.crrxaw2b5hr1.us-east-1.rds.amazonaws.com',
@@ -10,29 +10,37 @@ let db_credentials = {
     password: 'wndeoalska86',
     port: 5432,
 }
+Soonk: Same issue before
 
-Soonk: for some reason, password can't be read from environment file, so for now, I put my password as string itself.
+let addressesForDb = [
+  {address: '63 Fifth Ave, New York, NY', latLong: {lat: 40.7353041, lng: -73.99413539999999} },
+  {address: '16 E 16th St, New York, NY', latLong: {lat: 40.736765,  lng: -73.9919024} },
+  {address: '2 W 13th St, New York, NY',  latLong: {lat: 40.7353297, lng: -73.99447889999999} }
+];
 
-// Connect to the AWS RDS Postgres database
-const client = new Client(db_credentials);
-client.connect();
+async.eachSeries(addressesForDb, function(value, callback) {
+    let client = new Client(db_credentials);
+    client.connect();
 
-Soonk: When did we create the class Client? I don't remember. for now, I just kept the code as it is
-
-// Sample SQL statement to create a table (using ` quotes to break into multiple lines):
-let query = `CREATE TABLE aalocations ( address varchar(100), lat double precision, long double precision);`;
-
-Soonk: Minimum number of characters is 100. It could be 125 or something else.
+Soonk: eachSeries seems like doing the same thing as forEach in vanilla JS
 
 
-// Sample SQL statement to delete a table:
-// let query = "DROP TABLE aalocations;";
+    // When mixing variables into a query, place them in a `values` array and then refer to those 
+    // elements within the `text` portion of the query using $1, $2, etc.
+    let query = {
+      text: "INSERT INTO aalocations VALUES($1, $2, $3)",
+      
+<--Soonk: $1, $2, $3 seems like doing the samething as E`' in the tutorial Not sure-->
 
-Soonk: Since 'DROP TABLE' command is for removing the table in the db, for now I did commented this out
 
-client.query(query, (err, res) => {
-    if (err){ throw err; }
+      values: [value.address, value.latLong.lat, value.latLong.lng]
+    };
 
-    console.log(res);
-    client.end();
+    client.query(query, (err, res) => {
+        if (err){ throw err; }
+
+        console.log(res);
+        client.end();
+    });
+    setTimeout(callback, 1000);
 });
