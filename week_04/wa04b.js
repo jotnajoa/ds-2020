@@ -11,6 +11,8 @@ let db_credentials = {
     port: 5432,
 }
 
+// Same issue as before
+
 let addressesForDb = [
   {address: '63 Fifth Ave, New York, NY', latLong: {lat: 40.7353041, lng: -73.99413539999999} },
   {address: '16 E 16th St, New York, NY', latLong: {lat: 40.736765,  lng: -73.9919024} },
