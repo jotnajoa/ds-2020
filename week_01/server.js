@@ -1,4 +1,8 @@
 const http = require('http');
+const dotenv=require('dotenv');
+
+dotenv.config();
+console.log(process.env.TESTWORD)
 
 const hostname = process.env.IP
 const port = process.env.PORT
