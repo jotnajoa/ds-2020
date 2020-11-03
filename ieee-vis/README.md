@@ -4,7 +4,7 @@ Insight is what data-vis practitioner should provide to the audience.
 Data itself doesn't give you any insight and even if one could get its own insight out of the data, taking so much time to abstract the insight everytime is time-consuming and sometimes leads the analyst to the wrong direction. Data visualizer is one who analyzes data and drive the potential readers to the direction that data visualizer thinks that it's the essence of the strings of data.
 
 ![First Image]
-(https://github.com/jotnajoa/ds-2020/blob/master/ieee-vis/img1.png)
+(https://github.com/jotnajoa/ds-2020/blob/master/ieee-vis/img1.png?raw=true)
 
 People shoud learn what all the data is indicating rather than purely grounding on the factual thing. Data is telling a message and that's what people should learn from the data. However the processed data sometimes causes a bias. That's why data auditing is necessary. Even if superficially data is cleary guiding you to a certain direction, verification of the data if the core idea that the visualization or raw data is biased due to the collection method or interpretation method is necessary to be reviewed. Crwod data auditing enables it by being hinted by crowd funding. This idea is a good example borrowing a mechanism from the other field and implement into another field and having a meaning.
 
